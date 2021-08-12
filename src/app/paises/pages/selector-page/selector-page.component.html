@@ -11,7 +11,41 @@
             </select>
         </div>
     </div>
-
+    <div class="row mb-5" *ngIf="paises.length!==0">
+        <div class="col">
+            <label class="form-label">Países: </label>
+            <select class="form-control" formControlName="pais">
+                <option value="">-- Seleccione País -- </option>
+                <option *ngFor="let pais of paises" [value]="pais.alpha3Code | lowercase"> {{pais.name}} </option>
+            </select>
+        </div>
+        
+        
+    </div>  
+    <div class="row mb-5" *ngIf="fronterizos.length!==0">
+        
+        <div class="col">
+            <label class="form-label">Fronteras: </label>
+            <select class="form-control" formControlName="frontera" >
+                <option value="">-- Seleccione Frontera -- </option>
+                <option *ngFor="let fronterizo of fronterizos" [value]="fronterizo.alpha3Code | lowercase"> {{fronterizo.name}} </option>
+            </select>
+        </div>
+    </div>  
+    <div class="row" *ngIf="cargando">
+        <div class="col">
+            <div class="alert alert-primary">
+                Cargando...
+            </div>
+        </div>
+    </div>
+    <div class="row" *ngIf="paises.length!==0 && !fronteras">
+        <div class="col">
+            <div class="alert alert-danger">
+                Este país no tiene fronteras
+            </div>
+        </div>
+    </div>
     <div class="row">
         <div class="col">
             <button class="btn btn-primary float-end" type="submit">
@@ -19,6 +53,7 @@
             </button>
         </div>
     </div>
+    
 
 </form>
 
